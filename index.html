@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            function calculateScore()
+			{
+				var score = 0;
+
+				//Q1
+				var mQuestion = document.querySelector('input[name="country"]:checked')?.value;
+				if (mQuestion === 'Illinois') {
+					score += 3;
+				}
+
+				var fQuestion = document.getElementById('number').value;
+				if (fQuestion.trim() === '-50') {
+					score += 3;
+				}
+
+				const correctAns = ["Authority structure", "Papal infallibility"];
+				let selectedAns = [];
+				const checkBoxes = document.querySelectorAll('input[name="religion"]:checked');
+				checkBoxes.forEach((checkBox) => {
+					selectedAns.push(checkBox.value);
+				});
+
+				if (correctAns.length === selectedAns.length &&
+					correctAns.every(answer => selectedAns.includes(answer))) {
+						score += 4;
+				}
+
+				alert("Score: " + score + " / 10");
+			}
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+				<h3>In what state is Chicago located?</h3>
+					<form>
+						<input type="radio" name="country" value="Minnesota">
+						<label>Minnesota</label>
+						<br>
+						<input type="radio" name="country" value="Illinois">
+						<label>Illinois</label>
+						<br>
+						<input type="radio" name="country" value="Arizona">
+						<label>Arizona</label>
+						<br>
+						<input type="radio" name="country" value="Pennsylvania">
+						<label>Pennsylvania</label>
+						<br>
+					</form>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+				<h3>What is the value of 1 - 2 + 3 - 4 + ... + 99 - 100?</h3>
+					<input type="text" id="number">
+					<br>
+            </div>
+
+			<div class="section">
+                <h2>Part 3: Multiple Choice, more answers</h2>
+                <hr>
+                <h3>What are some differences between Orthodoxism and Catholicism</h3>
+					<input type="checkbox" name="religion" value="Trinitarian belief">
+					<label>Trinitarian Belief</label>
+					<br>
+					<input type="checkbox" name="religion" value="Authority structure">
+					<label>Authority structure</label>
+					<br>
+					<input type="checkbox" name="religion" value="Papal infallibility">
+					<label>Papal infallibility</label>
+					<br>
+					<input type="checkbox" name="religion" value="Veneration of Mary and the Saints">
+					<label>Veneration of Mary and the Saints</label>
+					<br>
+            </div>
+
+			<button onclick="calculateScore()">Finish</button>
+        </div>
+    </body>
+</html>
